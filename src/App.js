@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react"
+import { Routes, Route, Link } from "react-router-dom"
+import BooksPage from "./components/BooksPage"
+import BookPage from "./components/BookPage"
+import MainPage from "./components/MainPage"
+import AddPage from "./components/AddPage"
+import EditPage from "./components/EditPage"
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Routes>
+        <Route path="/" element={<MainPage />} />
+        <Route path="/books" element={<BooksPage />} />
+        <Route path="/add" element={<AddPage />} />
+        <Route path="/edit" element={<EditPage />} />
+        <Route path="/book" element={<BookPage />} />
+      </Routes>
     </div>
-  );
+  )
 }
-
-export default App;
