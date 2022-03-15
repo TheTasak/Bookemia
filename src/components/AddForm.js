@@ -14,8 +14,22 @@ export default function AddForm() {
     description: "",
     collection: []
   });
-  function changeInput(event) {
+  // Options for select collections
+  const [collectionOptions, setCollectionOptions] = React.useState([]);
+  React.useEffect(() => {
+    fetch("http://localhost:9000/testAPI/collections")
+      .then(res => res.json())
+      .then(res => setCollectionOptions(res));
+  }, []);
+  const options = collectionOptions.map(collection => {
+    return (
+      <option key={collection.id} value={collection.id}>{collection.name}</option>
+    )
+  });
+
+  function handleInput(event) {
     var value;
+    console.log( formData.imgFile);
     if(event.target.name == "imgFile") {
       value = event.target.files[0];
     } else if(event.target.name == "collection") {
@@ -40,11 +54,12 @@ export default function AddForm() {
       body: preparedData
     });
   }
+  // GOOGLE API Integration with link loading
   function loadBook() {
     if(formData.bookLink.length > 0) {
-      let id_start = formData.bookLink.indexOf("id=")+3;
-      let id_end = formData.bookLink.indexOf("&", id_start);
-      let id = formData.bookLink.substring(id_start, id_end);
+      let idStart = formData.bookLink.indexOf("id=")+3;
+      let idEnd = formData.bookLink.indexOf("&", idStart);
+      let id = formData.bookLink.substring(idStart, idEnd);
       fetch("https://www.googleapis.com/books/v1/volumes/" + id)
       .then(res => res.json())
       .then(res => setFormData((oldData) => {
@@ -67,43 +82,42 @@ export default function AddForm() {
       <form onSubmit={handleSubmit}>
         <h2>Add a book</h2>
         <div>
-          <input className="form-input" value={formData.title} type="text" name="title" id="title" onChange={changeInput} autoComplete="off" placeholder="Title"/>
+          <input className="form-input" value={formData.title} type="text" name="title" id="title" onChange={handleInput} autoComplete="off" placeholder="Title"/>
         </div>
         <div>
-          <input className="form-input" value={formData.authors} type="text" name="authors" id="authors" onChange={changeInput} autoComplete="off" placeholder="Authors"/>
+          <input className="form-input" value={formData.authors} type="text" name="authors" id="authors" onChange={handleInput} autoComplete="off" placeholder="Authors"/>
         </div>
         <div>
-          <input className="form-input" value={formData.publisher} type="text" name="publisher" id="publisher" onChange={changeInput} autoComplete="off" placeholder="Publisher"/>
+          <input className="form-input" value={formData.publisher} type="text" name="publisher" id="publisher" onChange={handleInput} autoComplete="off" placeholder="Publisher"/>
         </div>
         <div>
-          <input className="form-input" value={formData.date} type="date" name="date" id="date" onChange={changeInput} autoComplete="off" pattern="\d{4}-\d{2}-\d{2}" placeholder="Publish date"/>
+          <input className="form-input" value={formData.date} type="date" name="date" id="date" onChange={handleInput} autoComplete="off" pattern="\d{4}-\d{2}-\d{2}" placeholder="Publish date"/>
         </div>
         <div>
-          <input className="form-input" value={formData.tags} type="text" name="tags" id="tags" onChange={changeInput} autoComplete="off" placeholder="Tags"/>
+          <input className="form-input" value={formData.tags} type="text" name="tags" id="tags" onChange={handleInput} autoComplete="off" placeholder="Tags"/>
         </div>
         <div>
-          <input className="form-input" value={formData.pages} type="number" name="pages" id="pages" onChange={changeInput} autoComplete="off" min="0" placeholder="Number of pages"/>
+          <input className="form-input" value={formData.pages} type="number" name="pages" id="pages" onChange={handleInput} autoComplete="off" min="0" placeholder="Number of pages"/>
         </div>
         <div>
-          <input className="form-input" value={formData.language} type="text" name="language" id="language" onChange={changeInput} autoComplete="off" placeholder="Language"/>
+          <input className="form-input" value={formData.language} type="text" name="language" id="language" onChange={handleInput} autoComplete="off" placeholder="Language"/>
         </div>
         <div>
-          <textarea className="form-input" value={formData.description} name="description" id="description" onChange={changeInput} autoComplete="off" placeholder="Description"/>
+          <textarea className="form-input" value={formData.description} name="description" id="description" onChange={handleInput} autoComplete="off" placeholder="Description"/>
         </div>
         <div>
-          <select name="collection" id="collection" multiple={true} value={formData.collection} onChange={changeInput}>
+          <select name="collection" id="collection" multiple={true} value={formData.collection} onChange={handleInput}>
             <option value="" disabled={true}>--- Choose collections ---</option>
-            <option value="one">One</option>
-            <option value="two">Two</option>
-            <option value="three">Three</option>
+            {options}
           </select>
         </div>
         <div>
           <label className="form-file" htmlFor="imgFile">Book thumbnail</label>
-          <input onChange={changeInput} type="file" name="imgFile" id="imgFile"/>
+          <input onChange={handleInput} type="file" name="imgFile" id="imgFile" required/>
+          {Object.getPrototypeOf(formData.imgFile) == Array.prototype ? "" : formData.imgFile.name}
         </div>
         <div>
-          <input className="form-input" value={formData.bookLink} type="text" name="bookLink" id="bookLink" onChange={changeInput} autoComplete="off" placeholder="GoogleBooks link"/>
+          <input className="form-input" value={formData.bookLink} type="text" name="bookLink" id="bookLink" onChange={handleInput} autoComplete="off" placeholder="GoogleBooks link"/>
         </div>
         <div>
           <button onClick={loadBook} className="submit-button other-button" type="button">Load GoogleBooks</button>
