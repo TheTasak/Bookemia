@@ -15,7 +15,7 @@ export default function BookPage() {
           setImgLink("http://localhost:9000/" + data.image_link);
         }
       });
-  }, []);
+  }, [urlParams]);
   return (
     <div>
       <Header />
@@ -45,6 +45,10 @@ export default function BookPage() {
                 <tr>
                   <td>Category:</td>
                   <td>{bookData.category}</td>
+                </tr>
+                <tr>
+                  <td>Collections:</td>
+                  <td>{bookData.collections !== undefined ? bookData.collections.join(", ") : ""}</td>
                 </tr>
                 <tr>
                   <td>Page count:</td>

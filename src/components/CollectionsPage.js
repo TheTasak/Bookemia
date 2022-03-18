@@ -1,35 +1,30 @@
 import React from "react"
 import Header from "./Header"
-import BookThumbnail from "./BookThumbnail"
+import CollectionThumbnail from "./CollectionThumbnail"
 
-export default function BooksPage() {
+export default function CollectionPage() {
   let [dataObj, setDataObj] = React.useState([]);
   let [sort, setSort] = React.useState("");
   React.useEffect(() => {
-    fetch("http://localhost:9000/testAPI/all")
+    fetch("http://localhost:9000/testAPI/collections")
       .then(res => res.json())
       .then(data => setDataObj(data));
   }, []);
-  const bookObj = dataObj.map( book => {
+  const collectionObj = dataObj.map( collection => {
     return (
-      <BookThumbnail key={book.id} {...book}/>
+      <CollectionThumbnail key={collection.id} {...collection}/>
     )
   });
   function changeSort(event) {
+    console.log(dataObj);
     let name = event.target.name;
     setSort(name);
     switch (name) {
-      case "author-up":
-        setDataObj(oldData => oldData.sort((a, b) => a.authors.toLowerCase() < b.authors.toLowerCase() ? 1 : -1));
-        break;
-      case "author-down":
-        setDataObj(oldData => oldData.sort((a, b) => a.authors.toLowerCase() > b.authors.toLowerCase() ? 1 : -1));
-        break;
       case "title-up":
-        setDataObj(oldData => oldData.sort((a, b) => a.title.toLowerCase() < b.title.toLowerCase() ? 1 : -1));
+        setDataObj(oldData => oldData.sort((a, b) => a.name.toLowerCase() < b.name.toLowerCase() ? 1 : -1));
         break;
       case "title-down":
-        setDataObj(oldData => oldData.sort((a, b) => a.title.toLowerCase() > b.title.toLowerCase() ? 1 : -1));
+        setDataObj(oldData => oldData.sort((a, b) => a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1));
         break;
       case "reset":
         setDataObj(oldData => oldData.sort((a, b) => a.id > b.id ? 1 : -1));
@@ -37,7 +32,6 @@ export default function BooksPage() {
       default:
         break;
     }
-    console.log(dataObj);
   }
   return (
     <div>
@@ -45,13 +39,11 @@ export default function BooksPage() {
       <div className="main">
         <div className="main--buttons">
           <span>Sort by:</span>
-          <button type="button" className={sort == "author-up" ? "clicked" : "not-clicked"} name="author-up" onClick={changeSort}>Author <i className="fa-solid fa-arrow-up-a-z"></i></button>
-          <button type="button" className={sort == "author-down" ? "clicked" : "not-clicked"} name="author-down" onClick={changeSort}>Author <i className="fa-solid fa-arrow-down-a-z"></i></button>
           <button type="button" className={sort == "title-up" ? "clicked" : "not-clicked"} name="title-up" onClick={changeSort}>Title <i className="fa-solid fa-arrow-up-a-z"></i></button>
           <button type="button" className={sort == "title-down" ? "clicked" : "not-clicked"} name="title-down" onClick={changeSort}>Title <i className="fa-solid fa-arrow-down-a-z"></i></button>
           <button type="button" name="reset" onClick={changeSort}>Reset</button>
         </div>
-        <div className="main--books"> {bookObj} </div>
+        <div className="main--books"> {collectionObj} </div>
       </div>
     </div>
   )

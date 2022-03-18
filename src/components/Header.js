@@ -16,22 +16,22 @@ export default function Header() {
             <i className="sideNav--icon fas fa-bars"></i>
           </Link>
         </div>
-        <div className={currentLocation.pathname == "/books" ? "sideNav--current" : ""}>
-          <Link to="/books">
+        <div className={currentLocation.pathname === "/books" ? "sideNav--current" : ""}>
+          <Link to="/collections">
             <span className="sideNav--text">Books</span><i className="sideNav--icon fas fa-book"></i>
           </Link>
         </div>
-        <div className={currentLocation.pathname == "/add" ? "sideNav--current" : ""}>
+        <div className={currentLocation.pathname === "/add" ? "sideNav--current" : ""}>
           <Link to="/add">
             <span className="sideNav--text">Create</span><i className="sideNav--icon fas fa-folder-plus"></i>
           </Link>
         </div>
-        <div className={currentLocation.pathname == "/edit" ? "sideNav--current" : ""}>
+        <div className={currentLocation.pathname === "/edit" ? "sideNav--current" : ""}>
           <Link to="/edit">
             <span className="sideNav--text">Edit</span><i className="sideNav--icon fas fa-pen-to-square"></i>
           </Link>
         </div>
-        <div className={currentLocation.pathname == "/about" ? "sideNav--current" : ""} style={{marginTop: 'auto', marginBottom: '10px'}}>
+        <div className={currentLocation.pathname === "/about" ? "sideNav--current" : ""} style={{marginTop: 'auto', marginBottom: '10px'}}>
           <Link to="/about">
             <span className="sideNav--text">Account</span><i className="sideNav--icon fas fa-user"></i>
           </Link>

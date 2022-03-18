@@ -1,6 +1,7 @@
 import React from "react"
-import { Routes, Route, Link } from "react-router-dom"
-import BooksPage from "./components/BooksPage"
+import { Routes, Route } from "react-router-dom"
+import CollectionPage from "./components/CollectionPage"
+import CollectionsPage from "./components/CollectionsPage"
 import BookPage from "./components/BookPage"
 import MainPage from "./components/MainPage"
 import AddPage from "./components/AddPage"
@@ -11,7 +12,8 @@ export default function App() {
     <div>
       <Routes>
         <Route path="/" element={<MainPage />} />
-        <Route path="/books" element={<BooksPage />} />
+        <Route path="/collections" element={<CollectionsPage />} />
+        <Route path="/collection" element={<CollectionPage />} />
         <Route path="/add" element={<AddPage />} />
         <Route path="/edit" element={<EditPage />} />
         <Route path="/book" element={<BookPage />} />

@@ -30,9 +30,9 @@ export default function AddForm() {
   function handleInput(event) {
     var value;
     console.log( formData.imgFile);
-    if(event.target.name == "imgFile") {
+    if(event.target.name === "imgFile") {
       value = event.target.files[0];
-    } else if(event.target.name == "collection") {
+    } else if(event.target.name === "collection") {
       value = [...event.target.options].filter(o => o.selected).map(o => o.value);
     } else {
       value = event.target.value;
@@ -82,7 +82,7 @@ export default function AddForm() {
       <form onSubmit={handleSubmit}>
         <h2>Add a book</h2>
         <div>
-          <input className="form-input" value={formData.title} type="text" name="title" id="title" onChange={handleInput} autoComplete="off" placeholder="Title"/>
+          <input className="form-input" value={formData.title} type="text" name="title" id="title" onChange={handleInput} autoComplete="off" placeholder="Title" required/>
         </div>
         <div>
           <input className="form-input" value={formData.authors} type="text" name="authors" id="authors" onChange={handleInput} autoComplete="off" placeholder="Authors"/>
@@ -114,7 +114,7 @@ export default function AddForm() {
         <div>
           <label className="form-file" htmlFor="imgFile">Book thumbnail</label>
           <input onChange={handleInput} type="file" name="imgFile" id="imgFile" required/>
-          {Object.getPrototypeOf(formData.imgFile) == Array.prototype ? "" : formData.imgFile.name}
+          {Object.getPrototypeOf(formData.imgFile) === Array.prototype ? "" : formData.imgFile.name}
         </div>
         <div>
           <input className="form-input" value={formData.bookLink} type="text" name="bookLink" id="bookLink" onChange={handleInput} autoComplete="off" placeholder="GoogleBooks link"/>
