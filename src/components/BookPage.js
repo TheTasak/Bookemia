@@ -1,6 +1,6 @@
 import React from "react"
 import Header from "./Header"
-import {useSearchParams} from "react-router-dom"
+import { Link, useSearchParams} from "react-router-dom"
 
 export default function BookPage() {
   const [urlParams, setUrlParams] = useSearchParams();
@@ -48,7 +48,17 @@ export default function BookPage() {
                 </tr>
                 <tr>
                   <td>Collections:</td>
-                  <td>{bookData.collections !== undefined ? bookData.collections.join(", ") : ""}</td>
+                  <td>{bookData.collections !== undefined ? bookData.collections.map(collection => {
+                      return (
+                        <span key={collection.id} className="book--collection_link">
+                          <Link to={"/collection?id=" + collection.id}>
+                            {collection.name}
+                          </Link>
+                          <br></br>
+                        </span>
+                      )
+                    }) : ""}
+                  </td>
                 </tr>
                 <tr>
                   <td>Page count:</td>

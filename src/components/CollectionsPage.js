@@ -16,7 +16,6 @@ export default function CollectionPage() {
     )
   });
   function changeSort(event) {
-    console.log(dataObj);
     let name = event.target.name;
     setSort(name);
     switch (name) {
