@@ -1,0 +1,8 @@
+.collectionThumbnail--title{
+  text-align: center;
+  font-size: 16px;
+  word-break: normal;
+  max-width: inherit;
+  font-weight: 600;
+  margin-top: 5px;
+}

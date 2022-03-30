@@ -1,6 +1,7 @@
 import React from "react"
-import Header from "./Header"
+import Header from "../Common/Header"
 import CollectionThumbnail from "./CollectionThumbnail"
+import styles from "../Common/FilterButtons.module.css"
 
 export default function CollectionPage() {
   let [dataObj, setDataObj] = React.useState([]);
@@ -36,13 +37,13 @@ export default function CollectionPage() {
     <div>
       <Header />
       <div className="main">
-        <div className="main--buttons">
+        <div className={styles.filterButtons}>
           <span>Sort by:</span>
-          <button type="button" className={sort == "title-up" ? "clicked" : "not-clicked"} name="title-up" onClick={changeSort}>Title <i className="fa-solid fa-arrow-up-a-z"></i></button>
-          <button type="button" className={sort == "title-down" ? "clicked" : "not-clicked"} name="title-down" onClick={changeSort}>Title <i className="fa-solid fa-arrow-down-a-z"></i></button>
+          <button type="button" className={sort == "title-up" ? styles.clicked : styles["not-clicked"]} name="title-up" onClick={changeSort}>Title <i className="fa-solid fa-arrow-up-a-z"></i></button>
+          <button type="button" className={sort == "title-down" ? styles.clicked : styles["not-clicked"]} name="title-down" onClick={changeSort}>Title <i className="fa-solid fa-arrow-down-a-z"></i></button>
           <button type="button" name="reset" onClick={changeSort}>Reset</button>
         </div>
-        <div className="main--books"> {collectionObj} </div>
+        <div className="content"> {collectionObj} </div>
       </div>
     </div>
   )

@@ -1,6 +1,7 @@
 import React from "react"
-import Header from "./Header"
+import Header from "../Common/Header"
 import { Link, useSearchParams} from "react-router-dom"
+import styles from "./BookPage.module.css"
 
 export default function BookPage() {
   const [urlParams, setUrlParams] = useSearchParams();
@@ -20,14 +21,14 @@ export default function BookPage() {
     <div>
       <Header />
       <div className="main">
-        <div className="book--title">
+        <div className={styles.bookTitle}>
           <h1>{bookData.title}</h1>
         </div>
-        <div className="book--boxes">
-          <div className="book--image">
+        <div className={styles.bookBoxes}>
+          <div className={styles.bookImage}>
             <img src={imgLink} />
           </div>
-          <div className="book--details">
+          <div className={styles.bookDetails}>
             <table>
               <tbody>
                 <tr>

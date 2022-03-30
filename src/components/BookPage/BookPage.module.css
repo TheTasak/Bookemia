@@ -1,0 +1,47 @@
+.bookTitle{
+  text-align: center;
+  color: white;
+  margin: 20px 0;
+}
+.bookBoxes{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  column-gap: 5%;
+}
+.bookDetails{
+  border: 2px solid white;
+  border-radius: 10px;
+  color: white;
+  padding: 20px 30px;
+  font-size: calc(0.6em + 0.5vw);
+  width: 50%;
+  min-width: 200px;
+  background-color: #323232;
+}
+.bookDetails table{
+  width: 100%;
+}
+.bookDetails td{
+  padding: 10px;
+}
+.bookImage{
+  width: 25%;
+  min-width: 200px;
+  margin-bottom: 20px;
+}
+.bookImage img{
+  max-width: 100%;
+  border-radius: 10px;
+  border: 2px solid white;
+}
+@media (max-width: 1200px) {
+  .bookDetails{
+    width: 90%;
+  }
+  .bookImage {
+    width: 50%;
+  }
+}

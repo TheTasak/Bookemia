@@ -1,5 +1,5 @@
 import React from "react"
-import Header from "./Header"
+import Header from "../Common/Header"
 
 export default function EditPage() {
   return (

@@ -1,4 +1,5 @@
 import React from "react"
+import styles from "./AddForm.module.css"
 
 export default function AddForm() {
   const [formData, setFormData] = React.useState({
@@ -29,7 +30,6 @@ export default function AddForm() {
 
   function handleInput(event) {
     var value;
-    console.log( formData.imgFile);
     if(event.target.name === "imgFile") {
       value = event.target.files[0];
     } else if(event.target.name === "collection") {
@@ -78,32 +78,32 @@ export default function AddForm() {
     }
   }
   return (
-    <div className="book-form">
+    <div className={styles.bookForm}>
       <form onSubmit={handleSubmit}>
         <h2>Add a book</h2>
         <div>
-          <input className="form-input" value={formData.title} type="text" name="title" id="title" onChange={handleInput} autoComplete="off" placeholder="Title" required/>
+          <input className={styles.formInput} value={formData.title} type="text" name="title" id="title" onChange={handleInput} autoComplete="off" placeholder="Title" required/>
         </div>
         <div>
-          <input className="form-input" value={formData.authors} type="text" name="authors" id="authors" onChange={handleInput} autoComplete="off" placeholder="Authors"/>
+          <input className={styles.formInput} value={formData.authors} type="text" name="authors" id="authors" onChange={handleInput} autoComplete="off" placeholder="Authors"/>
         </div>
         <div>
-          <input className="form-input" value={formData.publisher} type="text" name="publisher" id="publisher" onChange={handleInput} autoComplete="off" placeholder="Publisher"/>
+          <input className={styles.formInput} value={formData.publisher} type="text" name="publisher" id="publisher" onChange={handleInput} autoComplete="off" placeholder="Publisher"/>
         </div>
         <div>
-          <input className="form-input" value={formData.date} type="date" name="date" id="date" onChange={handleInput} autoComplete="off" pattern="\d{4}-\d{2}-\d{2}" placeholder="Publish date"/>
+          <input className={styles.formInput} value={formData.date} type="date" name="date" id="date" onChange={handleInput} autoComplete="off" pattern="\d{4}-\d{2}-\d{2}" placeholder="Publish date"/>
         </div>
         <div>
-          <input className="form-input" value={formData.tags} type="text" name="tags" id="tags" onChange={handleInput} autoComplete="off" placeholder="Tags"/>
+          <input className={styles.formInput} value={formData.tags} type="text" name="tags" id="tags" onChange={handleInput} autoComplete="off" placeholder="Tags"/>
         </div>
         <div>
-          <input className="form-input" value={formData.pages} type="number" name="pages" id="pages" onChange={handleInput} autoComplete="off" min="0" placeholder="Number of pages"/>
+          <input className={styles.formInput} value={formData.pages} type="number" name="pages" id="pages" onChange={handleInput} autoComplete="off" min="0" placeholder="Number of pages"/>
         </div>
         <div>
-          <input className="form-input" value={formData.language} type="text" name="language" id="language" onChange={handleInput} autoComplete="off" placeholder="Language"/>
+          <input className={styles.formInput} value={formData.language} type="text" name="language" id="language" onChange={handleInput} autoComplete="off" placeholder="Language"/>
         </div>
         <div>
-          <textarea className="form-input" value={formData.description} name="description" id="description" onChange={handleInput} autoComplete="off" placeholder="Description"/>
+          <textarea className={styles.formInput} value={formData.description} name="description" id="description" onChange={handleInput} autoComplete="off" placeholder="Description"/>
         </div>
         <div>
           <select name="collection" id="collection" multiple={true} value={formData.collection} onChange={handleInput}>
@@ -112,18 +112,18 @@ export default function AddForm() {
           </select>
         </div>
         <div>
-          <label className="form-file" htmlFor="imgFile">Book thumbnail</label>
+          <label className={styles.button + " " + styles.altButton} htmlFor="imgFile">Book thumbnail</label>
           <input onChange={handleInput} type="file" name="imgFile" id="imgFile" required/>
           {Object.getPrototypeOf(formData.imgFile) === Array.prototype ? "" : formData.imgFile.name}
         </div>
         <div>
-          <input className="form-input" value={formData.bookLink} type="text" name="bookLink" id="bookLink" onChange={handleInput} autoComplete="off" placeholder="GoogleBooks link"/>
+          <input className="formInput" value={formData.bookLink} type="text" name="bookLink" id="bookLink" onChange={handleInput} autoComplete="off" placeholder="GoogleBooks link"/>
         </div>
         <div>
-          <button onClick={loadBook} className="submit-button other-button" type="button">Load GoogleBooks</button>
+          <button onClick={loadBook} className={styles.button + " " + styles.altButton} type="button">Load GoogleBooks</button>
         </div>
         <div>
-          <button className="submit-button" type="submit">Send</button>
+          <button className={styles.button + " " + styles.submitButton} type="submit">Send</button>
         </div>
       </form>
     </div>

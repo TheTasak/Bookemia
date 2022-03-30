@@ -1,7 +1,8 @@
 import React from "react"
-import Header from "./Header"
+import Header from "../Common/Header"
 import BookThumbnail from "./BookThumbnail"
 import {useSearchParams} from "react-router-dom"
+import styles from "../Common/FilterButtons.module.css"
 
 export default function CollectionPage() {
   const [urlParams, setUrlParams] = useSearchParams();
@@ -39,21 +40,20 @@ export default function CollectionPage() {
       default:
         break;
     }
-    console.log(dataObj);
   }
   return (
     <div>
       <Header />
       <div className="main">
-        <div className="main--buttons">
+        <div className={styles.filterButtons}>
           <span>Sort by:</span>
-          <button type="button" className={sort === "author-up" ? "clicked" : "not-clicked"} name="author-up" onClick={changeSort}>Author <i className="fa-solid fa-arrow-up-a-z"></i></button>
-          <button type="button" className={sort === "author-down" ? "clicked" : "not-clicked"} name="author-down" onClick={changeSort}>Author <i className="fa-solid fa-arrow-down-a-z"></i></button>
-          <button type="button" className={sort === "title-up" ? "clicked" : "not-clicked"} name="title-up" onClick={changeSort}>Title <i className="fa-solid fa-arrow-up-a-z"></i></button>
-          <button type="button" className={sort === "title-down" ? "clicked" : "not-clicked"} name="title-down" onClick={changeSort}>Title <i className="fa-solid fa-arrow-down-a-z"></i></button>
+          <button type="button" className={sort === "author-up" ? styles.clicked : styles["not-clicked"]} name="author-up" onClick={changeSort}>Author <i className="fa-solid fa-arrow-up-a-z"></i></button>
+          <button type="button" className={sort === "author-down" ? styles.clicked : styles["not-clicked"]} name="author-down" onClick={changeSort}>Author <i className="fa-solid fa-arrow-down-a-z"></i></button>
+          <button type="button" className={sort === "title-up" ? styles.clicked : styles["not-clicked"]} name="title-up" onClick={changeSort}>Title <i className="fa-solid fa-arrow-up-a-z"></i></button>
+          <button type="button" className={sort === "title-down" ? styles.clicked : styles["not-clicked"]} name="title-down" onClick={changeSort}>Title <i className="fa-solid fa-arrow-down-a-z"></i></button>
           <button type="button" name="reset" onClick={changeSort}>Reset</button>
         </div>
-        <div className="main--books"> {bookObj} </div>
+        <div className="content"> {bookObj} </div>
       </div>
     </div>
   )
