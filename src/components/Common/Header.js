@@ -9,7 +9,7 @@ export default function Header() {
   }
   const currentLocation = useLocation();
   return (
-    <div>
+    <React.Fragment>
       <div className={styles.sideNav + " " + (expanded ? styles["sideNav-expanded"] : styles["sideNav-normal"])}>
         <div onClick={expandNav}>
           <Link to="#">
@@ -47,6 +47,6 @@ export default function Header() {
           <span className={styles["topNav--text"]}> Bookemia</span>
         </Link>
       </div>
-    </div>
+    </React.Fragment>
   )
 }

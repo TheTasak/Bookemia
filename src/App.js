@@ -9,7 +9,7 @@ import EditPage from "./components/EditPage/EditPage"
 
 export default function App() {
   return (
-    <div>
+    <React.Fragment>
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/collections" element={<CollectionsPage />} />
@@ -18,6 +18,6 @@ export default function App() {
         <Route path="/edit" element={<EditPage />} />
         <Route path="/book" element={<BookPage />} />
       </Routes>
-    </div>
+    </React.Fragment>
   )
 }

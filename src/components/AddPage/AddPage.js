@@ -4,9 +4,9 @@ import AddForm from "./AddForm"
 
 export default function AddPage() {
   return (
-    <div>
+    <React.Fragment>
       <Header />
       <AddForm />
-    </div>
+    </React.Fragment>
   )
 }

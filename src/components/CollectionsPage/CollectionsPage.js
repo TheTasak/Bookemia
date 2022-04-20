@@ -34,7 +34,7 @@ export default function CollectionPage() {
     }
   }
   return (
-    <div>
+    <React.Fragment>
       <Header />
       <div className="main">
         <div className={styles.filterButtons}>
@@ -45,6 +45,6 @@ export default function CollectionPage() {
         </div>
         <div className="content"> {collectionObj} </div>
       </div>
-    </div>
+    </React.Fragment>
   )
 }

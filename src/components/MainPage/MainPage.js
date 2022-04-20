@@ -3,8 +3,8 @@ import Header from "../Common/Header"
 
 export default function MainPage() {
   return (
-    <div>
+    <React.Fragment>
       <Header />
-    </div>
+    </React.Fragment>
   )
 }

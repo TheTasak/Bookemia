@@ -18,7 +18,7 @@ export default function BookPage() {
       });
   }, [urlParams]);
   return (
-    <div>
+    <React.Fragment>
       <Header />
       <div className="main">
         <div className={styles.bookTitle}>
@@ -78,6 +78,6 @@ export default function BookPage() {
           </div>
         </div>
       </div>
-    </div>
+    </React.Fragment>
   )
 }
